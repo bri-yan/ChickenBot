@@ -99,11 +99,11 @@ class Battle:
         self.champion = champion
 
     @staticmethod
-    def is_critical(self, attacker: Chicken) -> bool:
+    def is_critical(attacker: Chicken) -> bool:
         return random.random() <= attacker.luck / 200
 
     @staticmethod
-    def calculate_damage(self, attacker: Chicken, defender: Chicken, ability: Ability, is_critical: bool) -> int:
+    def calculate_damage(attacker: Chicken, defender: Chicken, ability: Ability, is_critical: bool) -> int:
         modifier = (random.randint(85 + attacker.luck, 100 + attacker.luck) / 100) * (is_critical + 1)
         base = (((2 * attacker.level / 5 + 2) * ability.power * (attacker.strength / defender.defense)) / 50) + 2
         damage = int(base * modifier)

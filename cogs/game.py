@@ -3,7 +3,7 @@ import random
 import shutil
 import discord
 import asyncio
-from sympy import preview
+# from sympy import preview
 from library.classes import *
 from library.functions import *
 from discord.ext import commands

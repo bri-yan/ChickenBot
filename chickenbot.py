@@ -16,9 +16,9 @@ async def unload(ctx, extension):
 
 
 @client.command()
-async def reload(ctx, extenstion):
-    client.load_extension(f'cogs.{extenstion}')
-    client.unload_extension(f'cogs.{extenstion}')
+async def reload(ctx, extension):
+    client.load_extension(f'cogs.{extension}')
+    client.unload_extension(f'cogs.{extension}')
 
 
 for filename in os.listdir('./cogs'):
