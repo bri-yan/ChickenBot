@@ -1,12 +1,9 @@
-import os
 import random
-import shutil
-import discord
 import asyncio
-# from sympy import preview
-from library.classes import *
-from library.functions import *
 from discord.ext import commands
+from library.functions import *
+from classes.player import Player
+from classes.chicken import Chicken
 
 
 class Game(commands.Cog):
@@ -69,7 +66,7 @@ class Game(commands.Cog):
 
     @commands.command()
     async def test(self, ctx):
-        player = await get_player(self, ctx)
+        player = self.players.get(str(ctx.author))
         if player is None:
             return
         else:

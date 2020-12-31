@@ -1,5 +1,5 @@
-import chicken
-import ability
+from classes import ability
+from classes import chicken
 import random
 
 
@@ -20,7 +20,7 @@ class Battle:
         return damage
 
     def challenger_attack(self, ability: ability, is_critical: bool) -> int:
-        return self.calculate_damage(self, self.challenger, self.champion, ability, is_critical)
+        return self.calculate_damage(self.challenger, self.champion, ability, is_critical)
 
     def champion_attack(self, ability: ability, is_critical: bool) -> int:
-        return self.calculate_damage(self, self.champion, self.challenger, ability, is_critical)
+        return self.calculate_damage(self.champion, self.challenger, ability, is_critical)
