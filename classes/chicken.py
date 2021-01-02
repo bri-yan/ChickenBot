@@ -23,6 +23,7 @@ class Chicken:
         self.health = 0
         self.max_health = 50
         self.abilities = []
+        self.status = None
 
     def randomize(self, lower, upper):
         self.strength += random.randint(lower, upper)
