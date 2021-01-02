@@ -2,12 +2,13 @@ from classes.chicken import Chicken
 from classes.ability import Ability
 import random
 
-types = {"fire": {"normal": 1.0, "ice": 1.5, "wind": 1.0, "ground": 1.0, "electric": 1.0, "water": 0.5},
-         "ice": {"normal": 1.0, "fire": 0.5, "wind": 1.5, "ground": 1.0, "electric": 1.0, "water": 1.0},
-         "wind": {"normal": 1.0, "fire": 1.0, "ice": 0.5, "ground": 1.5, "electric": 1.0, "water": 1.0},
-         "ground": {"normal": 1.0, "fire": 1.0, "ice": 1.0, "wind": 0.5, "electric": 1.5, "water": 1.0},
-         "electric": {"normal": 1.0, "fire": 1.0, "ice": 1.0, "wind": 1.0, "ground": 0.5, "water": 1.5},
-         "water": {"normal": 1.0, "fire": 1.5, "ice": 1.0, "wind": 1.0, "ground": 1.0, "electric": 0.5}}
+types = {"normal": {"normal": 1.0, "fire": 1.0, "ice": 1.0, "wind": 1.0, "ground": 1.0, "electric": 1.0, "water": 1.0},
+         "fire": {"normal": 1.0, "fire": 1.0, "ice": 1.5, "wind": 1.0, "ground": 1.0, "electric": 1.0, "water": 0.5},
+         "ice": {"normal": 1.0, "fire": 0.5, "ice": 1.0, "wind": 1.5, "ground": 1.0, "electric": 1.0, "water": 1.0},
+         "wind": {"normal": 1.0, "fire": 1.0, "ice": 0.5, "wind": 1.0, "ground": 1.5, "electric": 1.0, "water": 1.0},
+         "ground": {"normal": 1.0, "fire": 1.0, "ice": 1.0, "wind": 0.5, "ground": 1.0, "electric": 1.5, "water": 1.0},
+         "electric": {"normal": 1.0, "fire": 1.0, "ice": 1.0, "wind": 1.0, "ground": 0.5, "electric": 1.0, "water": 1.5},
+         "water": {"normal": 1.0, "fire": 1.5, "ice": 1.0, "wind": 1.0, "ground": 1.0, "electric": 0.5, "water": 1.0}}
 
 
 class Battle:
