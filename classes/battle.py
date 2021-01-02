@@ -24,6 +24,19 @@ class Battle:
     def effectiveness(ability: Ability, defender: Chicken) -> float:
         return types[ability.type][defender.type]
 
+    @staticmethod
+    def status_effect(ability: Ability, defender: Chicken) -> bool:
+        if ability.effect is not None:
+            if random.random() <= 0.30:  # 30% chance of inflicting status effect
+                defender.status = ability.effect
+                return True
+        return False
+
+    @staticmethod
+    def is_affected(attacker: Chicken):
+        if attacker.status is not None:
+            pass  # TODO: figure out how to execute status effects
+
     def calculate_damage(self, attacker: Chicken, defender: Chicken, ability: Ability, is_critical: bool) -> int:
         luck = (random.randint(85 + attacker.luck, 100 + attacker.luck) / 100)
         print(f"Luck: {luck}")
@@ -31,8 +44,8 @@ class Battle:
         print(f"Modifier: {modifier}")
         base = (((2 * attacker.level / 5 + 2) * ability.power * (attacker.strength / defender.defense)) / 50) + 2
         print(f"Base: {base}")
-        damage = int(base * modifier * luck)
-        print(f"Damage: {damage}")
+        damage = round(base * modifier * luck)
+        print(f"Damage: {base * modifier * luck} -> {damage}")
         return damage
 
     def challenger_attack(self, ability: Ability, is_critical: bool) -> int:

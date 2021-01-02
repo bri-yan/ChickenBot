@@ -1,20 +1,39 @@
+class Vertex:
+    def __init__(self, name: str):
+        self.name = name
+
+
 class Graph:
-    def __init__(self, size):
-        self.size = size
-        self.adjMatrix = []
-        for i in range(size):
-            self.adjMatrix.append([0 for i in range(size)])
+    def __init__(self):
+        self.vertices = {}
 
-    def add_edge(self, v1, v2):
-        self.adjMatrix[v1][v2] = 1
-        self.adjMatrix[v2][v1] = 1
+    def add(self, vertex: Vertex) -> bool:
+        if vertex not in self.vertices:
+            self.vertices[vertex] = set()
+            return True
+        return False
 
-    def remove_edge(self, v1, v2):
-        if self.adjMatrix[v1][v2] == 0:
-            print(f"No edge between {v1} and {v2}")
-            return
-        self.adjMatrix[v1][v2] = 0
-        self.adjMatrix[v2][v1] = 0
+    def connect(self, vertex: Vertex, neighbor: Vertex) -> bool:
+        if vertex in self.vertices and neighbor in self.vertices:
+            self.vertices[vertex].add(neighbor)
+            self.vertices[neighbor].add(vertex)
+            return True
+        return False
+
+    def neighbors(self, vertex: Vertex):
+        return self.vertices[vertex]
+
+    def display(self):
+        for vertex in self.vertices:
+            print(f"{vertex.name}: {[neighbor.name for neighbor in self.vertices[vertex]]}")
+
+    def get(self, name: str):
+        vertices = self.vertices.keys()
+        for vertex in vertices:
+            if vertex.name == name:
+                return vertex
+        return None
 
     def __len__(self):
-        return self.size
+        return len(self.vertices)
+
