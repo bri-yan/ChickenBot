@@ -71,7 +71,7 @@ class Game(commands.Cog):
             return
         else:
             await ctx.send(player.party[0].health_display())
-            player.party[0].lose_health(3)
+            player.party[0].reduce_health(3)
 
 
 def setup(client):

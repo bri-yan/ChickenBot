@@ -11,14 +11,15 @@ class Chicken:
         self.wins = 0
 
         # Modifiers
-        self.strength = 0
-        self.defense = 0
-        self.speed = 0
+        self.strength = 50
+        self.defense = 50
+        self.speed = 50
         self.luck = 0
 
         # Combat
+        self.type = None
         self.exp = 0
-        self.exp_cap = 25
+        self.exp_cap = 50
         self.health = 0
         self.max_health = 50
         self.abilities = []
@@ -37,7 +38,7 @@ class Chicken:
     def clone(self):
         return copy.deepcopy(self).randomize(-5, 0)
 
-    def lose_health(self, amount):
+    def reduce_health(self, amount):
         self.health = max(self.health - amount, 0)
 
     def health_display(self):

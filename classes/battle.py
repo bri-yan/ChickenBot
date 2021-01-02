@@ -10,7 +10,11 @@ class Battle:
 
     @staticmethod
     def is_critical(attacker: Chicken) -> bool:
-        return random.random() <= attacker.luck / 200
+        return random.random() <= max(1, attacker.luck) / 200
+
+    @staticmethod
+    def is_effective(ability: Ability, defender: Chicken) -> bool:
+        return ability.type
 
     @staticmethod
     def calculate_damage(attacker: Chicken, defender: Chicken, ability: Ability, is_critical: bool) -> int:

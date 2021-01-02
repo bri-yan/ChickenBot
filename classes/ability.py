@@ -3,3 +3,4 @@ class Ability:
         self.name = name
         self.type = type_
         self.power = power
+
