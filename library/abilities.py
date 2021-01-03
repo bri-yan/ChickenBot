@@ -1,5 +1,5 @@
 from classes.ability import Ability
-import effects
+import library.effects as effects
 
 # Normal Abilities
 peck = Ability("Peck", "normal", 40, 100)
