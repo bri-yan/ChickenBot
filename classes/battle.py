@@ -17,6 +17,18 @@ class Battle:
         self.challenger = challenger
         self.champion = champion
 
+    def challenger_starts(self) -> bool:
+        if self.challenger.speed > self.champion.speed:
+            return True
+        elif self.challenger.speed == self.champion.speed:
+            if self.challenger.level > self.champion.level:
+                return True
+            elif self.challenger.level == self.champion.level:
+                if self.challenger.luck >= self.challenger.luck:
+                    return True
+        return False
+
+
     @staticmethod
     def is_miss(ability: Ability) -> bool:
         if random.random() <= ability.accuracy / 100:
@@ -55,12 +67,12 @@ class Battle:
         print(f"Damage: {base * modifier * luck} -> {damage}")
         return damage
 
-    def evaluate(self, attacker: Chicken, ability: Ability):
+    def evaluate_prior(self, attacker: Chicken, ability: Ability):
         defender = self.champion if attacker == self.challenger else self.challenger
 
         # Check for status effect
         if attacker.status is not None:
-            if attacker.status.precedes:  # Check if status effect takes precedence
+            if attacker.status.precedes:  # Check if status effect takes precedence (pre-attack)
                 if attacker.status.negates:  # Check if status effect can negate attacks
                     if attacker.status.does_affect():  # Check if status negates this attack
                         pass  # TODO: implement response for negated attack
@@ -80,3 +92,10 @@ class Battle:
             pass  # TODO: implement response for critical attack
 
         damage = self.calculate_damage(attacker, defender, ability, critical)
+
+    @staticmethod
+    def evaluate_post(chicken: Chicken):
+        if chicken.status is not None:  # Check for status effect
+            if not chicken.status.precedes:  # Check if status effect is post-attack
+                if chicken.status.damages:  # Check if status effect damages chicken
+                    pass  # TODO: implement response for damaging effect
