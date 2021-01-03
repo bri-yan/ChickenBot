@@ -17,6 +17,12 @@ class Battle:
         self.champion = champion
 
     @staticmethod
+    def is_miss(ability: Ability) -> bool:
+        if random.random() <= ability.accuracy / 100:
+            return False
+        return True
+
+    @staticmethod
     def is_critical(attacker: Chicken) -> bool:
         return random.random() <= max(1, attacker.luck) / 200
 
@@ -25,9 +31,9 @@ class Battle:
         return types[ability.type][defender.type]
 
     @staticmethod
-    def status_effect(ability: Ability, defender: Chicken) -> bool:
+    def inflicts_effect(ability: Ability, defender: Chicken) -> bool:
         if ability.effect is not None:
-            if random.random() <= 0.30:  # 30% chance of inflicting status effect
+            if random.random() <= ability.effect.likelihood / 100:  # 30% chance of inflicting status effect
                 defender.status = ability.effect
                 return True
         return False
@@ -44,8 +50,8 @@ class Battle:
         print(f"Modifier: {modifier}")
         base = (((2 * attacker.level / 5 + 2) * ability.power * (attacker.strength / defender.defense)) / 50) + 2
         print(f"Base: {base}")
-        damage = round(base * modifier * luck)
-        print(f"Damage: {base * modifier * luck} -> {damage}")
+        damage = max(1, round(base * modifier * luck))
+        print(f"Damage: {base * modifier * luck:3} -> {damage}")
         return damage
 
     def challenger_attack(self, ability: Ability, is_critical: bool) -> int:
