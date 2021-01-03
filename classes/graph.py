@@ -2,6 +2,9 @@ class Vertex:
     def __init__(self, name: str):
         self.name = name
 
+    def __repr__(self):
+        return f"Vertex({self.name})"
+
 
 class Graph:
     def __init__(self):

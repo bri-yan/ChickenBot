@@ -1,6 +1,8 @@
 import random
 import copy
 from typing import List
+from classes.ability import Ability
+from classes.effect import Effect
 
 
 class Chicken:
@@ -22,8 +24,8 @@ class Chicken:
         self.exp_cap = 50
         self.health = 0
         self.max_health = 50
-        self.abilities = []
-        self.status = None
+        self.abilities: List[Ability] = []
+        self.status: Effect = None
 
     def randomize(self, lower, upper):
         self.strength += random.randint(lower, upper)
@@ -60,6 +62,21 @@ class Chicken:
 
         health_bar += heart_count * red_heart + half_count * half_heart + empty_count * empty_heart
         return health_bar
+
+    def add_ability(self, ability: Ability) -> bool:
+        if len(self.abilities) < 4:
+            self.abilities.append(ability)
+            return True
+        return False
+
+    def inflict_status(self, status: Effect) -> bool:
+        if self.status is None:
+            self.status = status
+            return True
+        return False
+
+    def remove_status(self):
+        self.status = None
 
 
 class Party:
